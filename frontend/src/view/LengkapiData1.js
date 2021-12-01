@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection:"column",
         flexWrap: 'wrap',
-        height:'750px', 
+        height:'780px', 
         width:'700px',
         margin:'10px auto',
         backgroundColor: '#ffffff',
@@ -64,7 +64,7 @@ export default function LengkapiData(){
         <Paper className={style.paperBox}
             variant='outlined'>
                  <form noValidate autoComplete='off'>
-                     <Stack direction='column' spacing={1} style={{margin: '10px auto'}}>
+                     <Stack direction='column' spacing={1} style={{margin: 30}}>
                          <Typography variant='body1'  component="div" gutterBottom>
                              Nama Lengkap (sesuai kartu identitas)
                          </Typography>
@@ -148,14 +148,17 @@ export default function LengkapiData(){
                             </Grid>
                         </Grid>
                      </Stack>
-                     <Button className={style.buttonNext}
-                            type='submit'
-                            variant='contained'
-                            style={{backgroundColor: '#8122B3',
-                                color: '#ffffff'}}
-                            >
-                                Selanjutnya  
+                     <Stack justifyContent='center' alignItems='center' style={{margin: 30}}>
+                        <Button className={style.buttonNext}
+                                type='submit'
+                                variant='contained'
+                                style={{backgroundColor: '#8122B3',
+                                    color: '#ffffff', borderRadius: 8, height: 40, width: 200}}
+                                >
+                                    Selanjutnya  
                         </Button>
+                     </Stack>
+                     
                  </form>
             </Paper></>
     )
