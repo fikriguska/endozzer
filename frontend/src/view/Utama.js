@@ -1,6 +1,9 @@
 import React from 'react';
 import {IconButton, AppBar, makeStyles, Toolbar, Button, styled, Typography, Grid } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
+import makeStyle from '@material-ui/core';
+import { border, Box, grid } from '@mui/system';
+import { Stack } from '@mui/material';
 
 const ColorButton = styled(Button)(({ theme }) => ({
     color: theme.palette.getContrastText(purple[500]),
@@ -9,8 +12,37 @@ const ColorButton = styled(Button)(({ theme }) => ({
       backgroundColor: purple[700],
     },
   }));
+
+const useStyles = makeStyles(() => ({
+    header: {
+        backgroundColor: "#ffffff",
+    },
+}));
   
 const Utama = props =>{
+    const { header } = useStyles();
+    const { history } = props;
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleMenu = event => {
+      setAnchorEl(event.currentTarget);
+    };
+
+    const handleButtonClick = pageURL =>{
+      history.push(pageURL);
+    };
+
+    const menuItems = [
+        {
+          menuTitle: "Login",
+          pageURL: "/login"
+        },
+        {
+          menuTitle: "Login_brand",
+          pageURL: "/login_brand"
+        },
+      ];
+    
     return(
         <>
         <div className="flex justify-center">
@@ -20,8 +52,12 @@ const Utama = props =>{
                 <div className="text-left text-gray-400 mt-16">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
 the industry's standard dummy text ever since the 1500s,</div>
                 <div className="flex flex-row space-x-10 mt-12 ml-10"> 
-                    <ColorButton className="order-1 text-2xl font-light" variant="contained" href="">SAYA PEMILIK BRAND</ColorButton>
-                    <ColorButton className="order-2 text-2xl font-light" variant="contained" href="">SAYA INFLUENCER</ColorButton>
+                    <ColorButton    onClick={() => handleButtonClick("/login_brand")} 
+                                    className="order-1 text-2xl font-light" 
+                                    variant="contained">SAYA PEMILIK BRAND</ColorButton>
+                    <ColorButton    onClick={() => handleButtonClick("/login")} 
+                                    className="order-2 text-2xl font-light" 
+                                    variant="contained">SAYA INFLUENCER</ColorButton>
                 </div>
             </div>
         </div>
@@ -54,8 +90,12 @@ the industry's standard dummy text ever since the 1500s,</div>
         <div className="flex flex-col justify-center bg-purple-600 bg-origin-border bg-contain">
             <div className="flex flex-row justify-center">
                 <div className="order-1 text-2xl font-light text-left ml-8">Siapkah kamu menjadikan Media Sosial sebagai pijakan karirmu?</div>
-                <Button className="order-2 text-2xl font-light text-left ml-8 bg-purple-600" variant="outlined" href="">Jadi influencer</Button>
-                <Button className="order-3 text-2xl font-light text-left ml-8 bg-purple-600" variant="outlined" href="">masuk sebagai brand owner</Button>
+                <Button onClick={() => handleButtonClick("/login")} 
+                        className="order-2 text-2xl font-light text-left ml-8 bg-purple-600" 
+                        variant="outlined">Jadi influencer</Button>
+                <Button onClick={() => handleButtonClick("/login_brand")} 
+                        className="order-3 text-2xl font-light text-left ml-8 bg-purple-600" 
+                        variant="outlined">masuk sebagai brand owner</Button>
             </div>
         </div>
 
