@@ -1,7 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-
-=======
 import {IconButton, AppBar, makeStyles, Toolbar, Button, styled, Typography, Grid } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import makeStyle from '@material-ui/core';
@@ -22,7 +19,6 @@ const useStyles = makeStyles(() => ({
     },
 }));
   
->>>>>>> 50fb303900b2ba5f8b2186c8f4ec9d13d87b8094
 const Utama = props =>{
     const { header } = useStyles();
     const { history } = props;
@@ -48,10 +44,6 @@ const Utama = props =>{
       ];
     
     return(
-<<<<<<< HEAD
-        <div>Homepage</div>
-    )
-=======
         <>
         <div className="flex justify-center">
             <img className = 'img order-2 mt-5' src="Frame 2.png" width="500" height="600"></img>
@@ -138,7 +130,7 @@ the industry's standard dummy text ever since the 1500s,</div>
         
         </>
     );
->>>>>>> 50fb303900b2ba5f8b2186c8f4ec9d13d87b8094
+
 }
 
 export default Utama;
