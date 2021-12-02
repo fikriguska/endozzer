@@ -117,144 +117,141 @@ user_data_influencer = [
 ]
 
 
-# class CampaignTest(APITestCase):
-# 	def setUp(self):
+class CampaignTest(APITestCase):
+	def setUp(self):
 
-# 		User.objects.create_user(username=user_data_company[0]['username'], email=user_data_company[0]['email'], first_name=user_data_company[0]['first_name'], last_name=user_data_company[0]['last_name'], no_telepon=user_data_company[0]['no_telepon'], is_company=user_data_company[0]['is_company'],  password=user_data_company[0]['password'])
-# 		User.objects.create_user(username=user_data_company[1]['username'], email=user_data_company[1]['email'], first_name=user_data_company[1]['first_name'], last_name=user_data_company[1]['last_name'], no_telepon=user_data_company[1]['no_telepon'], is_company=user_data_company[1]['is_company'],  password=user_data_company[1]['password'])
-# 		User.objects.create_user(username=user_data_influencer[0]['username'], email=user_data_influencer[0]['email'], first_name=user_data_influencer[0]['first_name'], last_name=user_data_influencer[0]['last_name'], no_telepon=user_data_influencer[0]['no_telepon'], is_company=user_data_influencer[0]['is_company'],  password=user_data_influencer[0]['password'])
+		User.objects.create_user(username=user_data_company[0]['username'], email=user_data_company[0]['email'], first_name=user_data_company[0]['first_name'], last_name=user_data_company[0]['last_name'], no_telepon=user_data_company[0]['no_telepon'], is_company=user_data_company[0]['is_company'],  password=user_data_company[0]['password'])
+		User.objects.create_user(username=user_data_company[1]['username'], email=user_data_company[1]['email'], first_name=user_data_company[1]['first_name'], last_name=user_data_company[1]['last_name'], no_telepon=user_data_company[1]['no_telepon'], is_company=user_data_company[1]['is_company'],  password=user_data_company[1]['password'])
+		User.objects.create_user(username=user_data_influencer[0]['username'], email=user_data_influencer[0]['email'], first_name=user_data_influencer[0]['first_name'], last_name=user_data_influencer[0]['last_name'], no_telepon=user_data_influencer[0]['no_telepon'], is_company=user_data_influencer[0]['is_company'],  password=user_data_influencer[0]['password'])
 
-# 		self.api_authentication(user_data_company[0]['username'], user_data_company[0]['password'])
+		self.api_authentication(user_data_company[0]['username'], user_data_company[0]['password'])
 
-# 	def api_authentication(self, username, password):
-# 		url = reverse('Token Obtain Pair')
-# 		data = {
-# 			'username': username,
-# 			'password': password
-# 		}
-# 		response = self.client.post(url, data)
-# 		self.jwt = response.data['access']
-# 		self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.jwt)
+	def api_authentication(self, username, password):
+		url = reverse('Token Obtain Pair')
+		data = {
+			'username': username,
+			'password': password
+		}
+		response = self.client.post(url, data)
+		self.jwt = response.data['access']
+		self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.jwt)
 
-# 	# def generate_photo_file(self):
-# 	# 	file = io.BytesIO()
-# 	# 	image = Image.new('RGBA', size=(100, 100), color=(155, 0, 0))
-# 	# 	image.save(file, 'png')
-# 	# 	file.name = 'test.png'
-# 	# 	file.seek(0)
-# 	# 	return file
+	# def generate_photo_file(self):
+	# 	file = io.BytesIO()
+	# 	image = Image.new('RGBA', size=(100, 100), color=(155, 0, 0))
+	# 	image.save(file, 'png')
+	# 	file.name = 'test.png'
+	# 	file.seek(0)
+	# 	return file
 
-# 	def create_campaign(self, data):
-# 		url = reverse('Campaign List Create')
-# 		return self.client.post(url, data, format='json')
+	def create_campaign(self, data):
+		url = reverse('Campaign List Create')
+		return self.client.post(url, data, format='json')
 
-# 	def test_create_campaign(self):
-# 		response = self.create_campaign(data=campaign_data[0])
-# 		self.assertEqual(201, response.status_code)
+	def test_create_campaign(self):
+		response = self.create_campaign(data=campaign_data[0])
+		self.assertEqual(201, response.status_code)
 
-# 	def test_list_campaign(self):
-# 		self.create_campaign(data=campaign_data[0])
-# 		self.create_campaign(data=campaign_data[1])
+	def test_list_campaign(self):
+		self.create_campaign(data=campaign_data[0])
+		self.create_campaign(data=campaign_data[1])
 
-# 		url = reverse('Campaign List Create')
-# 		response = self.client.get(url, format='json')
+		url = reverse('Campaign List Create')
+		response = self.client.get(url, format='json')
 
-# 		self.assertEqual(2, len(response.data))
-# 		self.assertEqual("this is title", response.data[0]['title'])
-# 		self.assertEqual("another title", response.data[1]['title'])
+		self.assertEqual(2, len(response.data))
+		self.assertEqual("this is title", response.data[0]['title'])
+		self.assertEqual("another title", response.data[1]['title'])
 
-# 	def test_list_check_permission(self):
-# 		self.create_campaign(data=campaign_data[0])
+	def test_list_check_permission(self):
+		self.create_campaign(data=campaign_data[0])
 
-# 		url = reverse('Campaign List Create')
-# 		response = self.client.get(url, format='json')
-# 		self.assertEqual('this is title', response.data[0]['title'])
+		url = reverse('Campaign List Create')
+		response = self.client.get(url, format='json')
+		self.assertEqual('this is title', response.data[0]['title'])
 
-# 		self.api_authentication(user_data_company[1]['username'], user_data_company[1]['password'])
-# 		response = self.client.get(url, format='json')
-# 		self.assertEqual([], response.data)
+		self.api_authentication(user_data_company[1]['username'], user_data_company[1]['password'])
+		response = self.client.get(url, format='json')
+		self.assertEqual([], response.data)
 
-# 		# influencer check list
-# 		self.api_authentication(user_data_influencer[0]['username'], user_data_influencer[0]['password'])
-# 		response = self.client.get(url, format='json')
-# 		self.assertEqual(1, len(response.data))
-
-
-# 	def test_detail_campaign(self):
-
-# 		self.create_campaign(data=campaign_data[0])
-# 		self.create_campaign(data=campaign_data[1])
-
-# 		# retrieve
-# 		url = reverse('Campaign Detail', kwargs={'pk': 1})
-# 		response = self.client.get(url, format='json')
-# 		print(response.data)
-# 		self.assertEqual('this is title', response.data['title'])
-
-# 		url = reverse('Campaign Detail', kwargs={'pk': 2})
-# 		response = self.client.get(url, format='json')
-# 		self.assertEqual('another title', response.data['title'])
-
-# 		url = reverse('Campaign Detail', kwargs={'pk': 3})
-# 		response = self.client.get(url, format='json')
-# 		self.assertEqual(404, response.status_code)
-
-# 		# update
-# 		data = {
-# 			'title': 'changed title'
-# 		}
-
-# 		url = reverse('Campaign Detail', kwargs={'pk': 1})
-# 		response = self.client.patch(url, data=data, format='json')
-# 		self.assertEqual(200, response.status_code)
-
-# 		response = self.client.get(url, format='json')
-# 		self.assertEqual('changed title', response.data['title'])
-
-# 		# delete
-# 		response = self.client.delete(url, format='json')
-# 		self.assertEqual(204, response.status_code)
-
-# 		response = self.client.get(url, format='json')
-# 		self.assertEqual(404, response.status_code)
-
-# 	def test_date(self):
-# 		data = campaign_data[1]
-# 		data['periode_start'] = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0) +  timezone.timedelta(1)
-# 		self.create_campaign(data=campaign_data[0])
-# 		self.create_campaign(data=data)
-
-# 		# influencer check list
-# 		self.api_authentication(user_data_influencer[0]['username'], user_data_influencer[0]['password'])
-# 		url = reverse('Campaign List Create')
-# 		response = self.client.get(url, format='json')
-# 		print(response.data)
-# 		self.assertEqual(1, len(response.data))
+		# influencer check list
+		self.api_authentication(user_data_influencer[0]['username'], user_data_influencer[0]['password'])
+		response = self.client.get(url, format='json')
+		self.assertEqual(1, len(response.data))
 
 
-# 		url = reverse('Campaign Detail', kwargs={'pk': 2})
-# 		response = self.client.get(url, format='json')
-# 		print(response.data)
-# 		self.assertEqual(404, response.status_code)
+	def test_detail_campaign(self):
 
-# 	def test_retrieve_permission(self):
-# 		self.create_campaign(data=campaign_data[0])
-# 		self.api_authentication(user_data_company[1]['username'], user_data_company[1]['password'])
+		self.create_campaign(data=campaign_data[0])
+		self.create_campaign(data=campaign_data[1])
 
-# 		url = reverse('Campaign Detail', kwargs={'pk': 1})
+		# retrieve
+		url = reverse('Campaign Detail', kwargs={'pk': 1})
+		response = self.client.get(url, format='json')
+		self.assertEqual('this is title', response.data['title'])
 
-# 		response = self.client.get(url, format='json')
-# 		self.assertEqual(403, response.status_code)
+		url = reverse('Campaign Detail', kwargs={'pk': 2})
+		response = self.client.get(url, format='json')
+		self.assertEqual('another title', response.data['title'])
 
-# 		data = {
-# 			'title': 'changed title'
-# 		}
+		url = reverse('Campaign Detail', kwargs={'pk': 3})
+		response = self.client.get(url, format='json')
+		self.assertEqual(404, response.status_code)
 
-# 		response = self.client.patch(url, data=data, format='json')
-# 		self.assertEqual(403, response.status_code)
+		# update
+		data = {
+			'title': 'changed title'
+		}
 
-# 		response = self.client.delete(url, format='json')
-# 		self.assertEqual(403, response.status_code)
+		url = reverse('Campaign Detail', kwargs={'pk': 1})
+		response = self.client.patch(url, data=data, format='json')
+		self.assertEqual(200, response.status_code)
+
+		response = self.client.get(url, format='json')
+		self.assertEqual('changed title', response.data['title'])
+
+		# delete
+		response = self.client.delete(url, format='json')
+		self.assertEqual(204, response.status_code)
+
+		response = self.client.get(url, format='json')
+		self.assertEqual(404, response.status_code)
+
+	def test_date(self):
+		data = campaign_data[1]
+		data['periode_start'] = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0) +  timezone.timedelta(1)
+		self.create_campaign(data=campaign_data[0])
+		self.create_campaign(data=data)
+
+		# influencer check list
+		self.api_authentication(user_data_influencer[0]['username'], user_data_influencer[0]['password'])
+		url = reverse('Campaign List Create')
+		response = self.client.get(url, format='json')
+		self.assertEqual(1, len(response.data))
+
+
+		url = reverse('Campaign Detail', kwargs={'pk': 2})
+		response = self.client.get(url, format='json')
+		self.assertEqual(404, response.status_code)
+
+	def test_retrieve_permission(self):
+		self.create_campaign(data=campaign_data[0])
+		self.api_authentication(user_data_company[1]['username'], user_data_company[1]['password'])
+
+		url = reverse('Campaign Detail', kwargs={'pk': 1})
+
+		response = self.client.get(url, format='json')
+		self.assertEqual(403, response.status_code)
+
+		data = {
+			'title': 'changed title'
+		}
+
+		response = self.client.patch(url, data=data, format='json')
+		self.assertEqual(403, response.status_code)
+
+		response = self.client.delete(url, format='json')
+		self.assertEqual(403, response.status_code)
 
 
 class JoinCampaignTest(APITestCase):
@@ -409,97 +406,95 @@ class JoinCampaignTest(APITestCase):
 		}
 		url = reverse('JoinCampaign List Create')
 		response = self.client.post(url, data, format='json')
-		print(response.data)
 		self.assertEqual(400, response.status_code)
 
 
 
-# class DraftPostTest(APITestCase):
+class DraftPostTest(APITestCase):
 
-# 	def setUp(self):
+	def setUp(self):
 
-# 		User.objects.create_user(username=user_data_influencer[0]['username'], email=user_data_influencer[0]['email'], first_name=user_data_influencer[0]['first_name'], last_name=user_data_influencer[0]['last_name'], no_telepon=user_data_influencer[0]['no_telepon'], is_company=user_data_influencer[0]['is_company'],  password=user_data_influencer[0]['password'])
-# 		User.objects.create_user(username=user_data_influencer[1]['username'], email=user_data_influencer[1]['email'], first_name=user_data_influencer[1]['first_name'], last_name=user_data_influencer[1]['last_name'], no_telepon=user_data_influencer[1]['no_telepon'], is_company=user_data_influencer[1]['is_company'],  password=user_data_influencer[1]['password'])
-# 		User.objects.create_user(username=user_data_company[0]['username'], email=user_data_company[0]['email'], first_name=user_data_company[0]['first_name'], last_name=user_data_company[0]['last_name'], no_telepon=user_data_company[0]['no_telepon'], is_company=user_data_company[0]['is_company'],  password=user_data_company[0]['password'])
+		User.objects.create_user(username=user_data_influencer[0]['username'], email=user_data_influencer[0]['email'], first_name=user_data_influencer[0]['first_name'], last_name=user_data_influencer[0]['last_name'], no_telepon=user_data_influencer[0]['no_telepon'], is_company=user_data_influencer[0]['is_company'],  password=user_data_influencer[0]['password'])
+		User.objects.create_user(username=user_data_influencer[1]['username'], email=user_data_influencer[1]['email'], first_name=user_data_influencer[1]['first_name'], last_name=user_data_influencer[1]['last_name'], no_telepon=user_data_influencer[1]['no_telepon'], is_company=user_data_influencer[1]['is_company'],  password=user_data_influencer[1]['password'])
+		User.objects.create_user(username=user_data_company[0]['username'], email=user_data_company[0]['email'], first_name=user_data_company[0]['first_name'], last_name=user_data_company[0]['last_name'], no_telepon=user_data_company[0]['no_telepon'], is_company=user_data_company[0]['is_company'],  password=user_data_company[0]['password'])
 
-# 		for i in [1, 2]:
-# 			self.api_authentication(user_data_influencer[i-1]['username'], user_data_influencer[i-1]['password'])
+		for i in [1, 2]:
+			self.api_authentication(user_data_influencer[i-1]['username'], user_data_influencer[i-1]['password'])
 
-# 			data = {
-# 				'user_id': i,
-# 				'birth_date': timezone.now(),
-# 				'gender': 1,
-# 			}
-# 			url = reverse('Influenzer List Create')
-# 			response = self.client.post(url, data)
+			data = {
+				'user_id': i,
+				'birth_date': timezone.now(),
+				'gender': 1,
+			}
+			url = reverse('Influenzer List Create')
+			response = self.client.post(url, data)
 
 
-# 		# create campaign
-# 		self.api_authentication(user_data_company[0]['username'], user_data_company[0]['password'])
-# 		url = reverse('Campaign List Create')
-# 		response = self.client.post(url, campaign_data[0], format='json')
+		# create campaign
+		self.api_authentication(user_data_company[0]['username'], user_data_company[0]['password'])
+		url = reverse('Campaign List Create')
+		response = self.client.post(url, campaign_data[0], format='json')
 
-# 		# join campaign influencer 1
-# 		self.api_authentication(user_data_influencer[0]['username'], user_data_influencer[0]['password'])
-# 		data = {
-# 			'campaign_id': '1'
-# 		}
-# 		url = reverse('JoinCampaign List Create')
-# 		response = self.client.post(url, data, format='json')
+		# join campaign influencer 1
+		self.api_authentication(user_data_influencer[0]['username'], user_data_influencer[0]['password'])
+		data = {
+			'campaign_id': '1'
+		}
+		url = reverse('JoinCampaign List Create')
+		response = self.client.post(url, data, format='json')
 
-# 		# join campaign influencer 2
-# 		self.api_authentication(user_data_influencer[1]['username'], user_data_influencer[1]['password'])
-# 		url = reverse('JoinCampaign List Create')
-# 		response = self.client.post(url, data, format='json')
+		# join campaign influencer 2
+		self.api_authentication(user_data_influencer[1]['username'], user_data_influencer[1]['password'])
+		url = reverse('JoinCampaign List Create')
+		response = self.client.post(url, data, format='json')
 
-# 	def api_authentication(self, username, password):
-# 		url = reverse('Token Obtain Pair')
-# 		data = {
-# 			'username': username,
-# 			'password': password
-# 		}
-# 		response = self.client.post(url, data)
-# 		self.jwt = response.data['access']
-# 		self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.jwt)
+	def api_authentication(self, username, password):
+		url = reverse('Token Obtain Pair')
+		data = {
+			'username': username,
+			'password': password
+		}
+		response = self.client.post(url, data)
+		self.jwt = response.data['access']
+		self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.jwt)
 
-# 	def generate_photo_file(self):
-# 		file = io.BytesIO()
-# 		image = Image.new('RGBA', size=(100, 100), color=(155, 0, 0))
-# 		image.save(file, 'png')
-# 		file.name = 'test.png'
-# 		file.seek(0)
-# 		return file
+	def generate_photo_file(self):
+		file = io.BytesIO()
+		image = Image.new('RGBA', size=(100, 100), color=(155, 0, 0))
+		image.save(file, 'png')
+		file.name = 'test.png'
+		file.seek(0)
+		return file
 
-# 	def testUploadImg(self):
-# 		self.api_authentication(user_data_company[0]['username'], user_data_company[0]['password'])
-# 		photo_file = self.generate_photo_file()
-# 		data = {
-# 			'img': photo_file
-# 		}
-# 		url = reverse('Img Create', kwargs={'pk': 1})
-# 		response = self.client.patch(url, data, format='multipart')
-# 		self.assertEqual(200, response.status_code)
+	def testUploadImg(self):
+		self.api_authentication(user_data_company[0]['username'], user_data_company[0]['password'])
+		photo_file = self.generate_photo_file()
+		data = {
+			'img': photo_file
+		}
+		url = reverse('Img Create', kwargs={'pk': 1})
+		response = self.client.patch(url, data, format='multipart')
+		self.assertEqual(200, response.status_code)
 
-# 	def testUploadExample(self):
-# 		self.api_authentication(user_data_company[0]['username'], user_data_company[0]['password'])
-# 		photo_file = self.generate_photo_file()
-# 		data = {
-# 			'example_photo': photo_file
-# 		}
-# 		url = reverse('Example Create', kwargs={'pk': 1})
-# 		response = self.client.patch(url, data, format='multipart')
-# 		self.assertEqual(200, response.status_code)
+	def testUploadExample(self):
+		self.api_authentication(user_data_company[0]['username'], user_data_company[0]['password'])
+		photo_file = self.generate_photo_file()
+		data = {
+			'example_photo': photo_file
+		}
+		url = reverse('Example Create', kwargs={'pk': 1})
+		response = self.client.patch(url, data, format='multipart')
+		self.assertEqual(200, response.status_code)
 
-# 	def testDraftCaption(self):
-# 		self.api_authentication(user_data_influencer[0]['username'], user_data_influencer[0]['password'])
+	def testDraftCaption(self):
+		self.api_authentication(user_data_influencer[0]['username'], user_data_influencer[0]['password'])
 
-# 		data = {
-# 			'draft_caption': 'aaaaa'
-# 		}
+		data = {
+			'draft_caption': 'aaaaa'
+		}
 
-# 		url = reverse('JoinCampaign Detail', kwargs={'pk': 1})
-# 		response = self.client.patch(url, data)
-# 		print(response.data)
+		url = reverse('JoinCampaign Detail', kwargs={'pk': 1})
+		response = self.client.patch(url, data)
 
 
 

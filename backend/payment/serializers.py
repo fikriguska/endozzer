@@ -1,10 +1,12 @@
 from rest_framework import serializers
-from .models import Payment
+from .models import *
 
 from .utils import generate_tx
 from campaigns.utils import get_tx_status
 
 from campaigns.models import JoinCampaign
+
+from accounts.models import Influenzer
 
 class PaymentSerializer(serializers.ModelSerializer):
 	joinCampaign_id = serializers.IntegerField(write_only=True, required=True)
@@ -38,6 +40,32 @@ class PaymentSerializer(serializers.ModelSerializer):
 		payment.save()
 		return payment
 
+class WithdrawSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Withdraw
+		fields = ['amount']
+		extra_kwargs = {
+			'amount': {'required': True}
+		}
+
+	def create(self, data):
+		inf = Influenzer.objects.get(user=self.context['request'].user)
+
+		wth = Withdraw.objects.filter(user=self.context['request'].user)
+
+		if wth.exists():
+			raise serializers.ValidationError("error", "Kamu sedang mengajukan withdraw saldo sebelumnya, harap tunggu sampai proses selesai")
+
+		if(inf.balance < data['amount']):
+			raise serializers.ValidationError("error", "Saldo tidak mencukupi") 
+
+		withdraw = Withdraw.objects.create(
+			user=self.context["request"].user,
+			amount=data["amount"]
+		)
+		withdraw.save()
+
+		return withdraw
 
 # class PaymentTxSerializer(serializers.ModelSerializer):
 # 	order_id = serializers.CharField(write_only=True, required=True)

@@ -6,7 +6,8 @@ from django.urls import reverse
 
 from accounts.models import *
 
-import datetime
+from django.utils import timezone
+
 
 user_data_company = [
 	{
@@ -105,7 +106,7 @@ class UserTest(APITestCase):
 
 			data = {
 				'user_id': i,
-				'birth_date': datetime.date.today(),
+				'birth_date': timezone.now(),
 				'gender': 1,
 			}
 			url = reverse('Influenzer List Create')
@@ -120,7 +121,7 @@ class UserTest(APITestCase):
 		data = {
 			'domicile': 'osaka',
 			'no_telepon': '0000000',
-			'birth_date': datetime.date.today(),
+			'birth_date': timezone.now(),
 			'gender': 1,
 		}
 

@@ -72,3 +72,8 @@ class IsInfluencerAndOwner(BasePermission):
 			return (obj.author == request.user)
 
 		return True
+
+class IsInfluenzer(BasePermission):
+
+	def has_permission(self, request, view):
+		return request.user.is_company == False

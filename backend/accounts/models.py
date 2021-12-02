@@ -16,7 +16,7 @@ class Influenzer(models.Model):
 		(2, 'Perempuan')
 	)
 	user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-	birth_date = models.DateField()
+	birth_date = models.DateTimeField()
 	gender = models.PositiveSmallIntegerField(choices=GENDER_TYPES, default=0)
 	instagram = models.CharField(max_length=20)
 	tiktok = models.CharField(max_length=20)
