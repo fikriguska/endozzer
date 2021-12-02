@@ -1,4 +1,17 @@
-import { Button, makeStyles, Paper, Typography, TextField } from "@material-ui/core";
+// page setelah komfirmasi di signup halaman1
+
+import { Button, 
+        makeStyles, 
+        Paper, 
+        Typography, 
+        TextField, 
+        Grid, 
+        FormControl, 
+        RadioGroup, 
+        FormControlLabel, 
+        Radio, 
+        Checkbox, 
+        FormGroup } from "@material-ui/core";
 import { Stack } from "@mui/material";
 import React from "react";
 import { ReactComponent as LogoBack} from '../Asset/LogoBack.svg'
@@ -14,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection:"column",
         flexWrap: 'wrap',
-        height:'800px', 
+        height:'780px', 
         width:'700px',
         margin:'10px auto',
         backgroundColor: '#ffffff',
@@ -27,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
         alignContent: 'flex-start',
         elevation: 10,
         backgroundColor: '#ffffff',
+    },
+    buttonNext:{
+        textAlign:'center'
     }
 
 }))
@@ -37,16 +53,18 @@ export default function LengkapiData(){
     const style = useStyles();
     
     return(
+        // <Button> buat tombol diatas paper
         <><Button className={style.buttonBack}
             variant='contained'
             startIcon={<LogoBack
                 style={{ height: 53, width: 36 }} />}
         >Data profil
         </Button>
+        {/* <Paper> = bagian form yang harus diisi */}
         <Paper className={style.paperBox}
             variant='outlined'>
                  <form noValidate autoComplete='off'>
-                     <Stack direction='column' spacing={1} style={{margin: '10px auto'}}>
+                     <Stack direction='column' spacing={1} style={{margin: 30}}>
                          <Typography variant='body1'  component="div" gutterBottom>
                              Nama Lengkap (sesuai kartu identitas)
                          </Typography>
@@ -84,7 +102,63 @@ export default function LengkapiData(){
                             placeholder='Nomor telepon'
                             fullWidth
                             />
+                        <Grid container spacing={2} direction='row'>
+                            <Grid item xs={4}>
+                                <Typography variant='body1'  component="div" gutterBottom>
+                                    Jenis kelamin
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={8}>
+                                <FormControl component='fieldset'>
+                                    <RadioGroup aria-label='gender'>
+                                        <FormControlLabel value='Laki-laki' control={<Radio />} label="Laki-laki"  color="secondary"/>
+                                        <FormControlLabel value='Perempuan' control={<Radio />} label="perempuan"  color="secondary"/>
+                                    </RadioGroup>
+                                </FormControl>
+                            </Grid>
+                        </Grid>
+
+                        <Grid container spacing={2} direction='row'>
+                            <Grid item xs={4}>
+                                <Typography variant='body1'  component="div" gutterBottom>
+                                    Kategori influencer
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={4}>
+                               
+                                        <FormGroup>
+                                            <FormControlLabel control={<Checkbox />} label="Entertainment" />
+                                            <FormControlLabel control={<Checkbox />} label="Health & Sport" />
+                                            <FormControlLabel control={<Checkbox />} label="Lifestyle & Travel" />
+                                            <FormControlLabel control={<Checkbox />} label="Technology" />
+                                        </FormGroup>
+                                    
+                            </Grid>
+                            <Grid item xs={4}>
+                                
+                                    
+                                        <FormGroup>
+                                            <FormControlLabel control={<Checkbox />} label="Family & Parenting" />
+                                            <FormControlLabel control={<Checkbox />} label="Food & Beverages" />
+                                            <FormControlLabel control={<Checkbox />} label="Beauty & Fashion" />
+                                            <FormControlLabel control={<Checkbox />} label="Gaming" />
+                                        </FormGroup>
+                                    
+                                
+                            </Grid>
+                        </Grid>
                      </Stack>
+                     <Stack justifyContent='center' alignItems='center' style={{margin: 30}}>
+                        <Button className={style.buttonNext}
+                                type='submit'
+                                variant='contained'
+                                style={{backgroundColor: '#8122B3',
+                                    color: '#ffffff', borderRadius: 8, height: 40, width: 200}}
+                                >
+                                    Selanjutnya  
+                        </Button>
+                     </Stack>
+                     
                  </form>
             </Paper></>
     )
