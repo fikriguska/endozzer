@@ -48,13 +48,12 @@ const Utama = props =>{
         <div className="flex justify-center">
             <img className = 'img order-2 mt-5' src="Frame 2.png" width="500" height="600"></img>
             <div className="order-1 flex flex-col p-16 mx-24 my-24">
-                <div className="text-5xl font-semibold">Promosikan produk dan dapatkan fee-nya!</div>
-                <div className="text-left text-gray-400 mt-16">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
-the industry's standard dummy text ever since the 1500s,</div>
+                <div className="text-5xl font-semibold">Promosikan brand di media sosial dengan mudah!</div>
+                <div className="text-left text-gray-400 mt-16">Endozzer ada untuk menghubungkan brand yang kamu punya dengan influencer yang tepat untuk mempromosikan produk / jasa dari brand kamu ke publik.</div>
                 <div className="flex flex-row space-x-10 mt-12 ml-10"> 
                     <ColorButton    onClick={() => handleButtonClick("/login_brand")} 
                                     className="order-1 text-2xl font-light" 
-                                    variant="contained">SAYA PEMILIK BRAND</ColorButton>
+                                    variant="contained">SAYA BRAND OWNER</ColorButton>
                     <ColorButton    onClick={() => handleButtonClick("/login")} 
                                     className="order-2 text-2xl font-light" 
                                     variant="contained">SAYA INFLUENCER</ColorButton>
@@ -66,61 +65,36 @@ the industry's standard dummy text ever since the 1500s,</div>
             <img className='img order-1' src="Frame 3.png" width="300" height="50"></img>
             <div className="order-2 flex flex-col">
                 <div className="text-3xl font-medium pl-8 text-purple-700">Apakah Itu ENDOZZER?</div>
-                <div className="text-justify pl-8 pt-8 text-gray-400">ENDOZZER merupakan platform influencer marketing yang menyediakan fasilitas bagi brand-owner untuk menemukan influencer dalam mempromosikan produk mereka. Brand-owner dapat menemukan influencer yang tepat sesuai kriteria yang diinginkan dan Influencer bisa mendapatkan uang saku tambahan hanya dengan memposting campaign dari sebuah perusahaan.</div>
+                <div className="text-justify pl-8 pt-8 text-gray-400">Endozzer merupakan platform influencer marketing yang menyediakan fasilitas bagi brand owner untuk menemukan influencer dalam mempromosikan produk mereka. Brand owner dapat menemukan influencer yang tepat sesuai kriteria yang diinginkan dan influencer bisa mendapatkan bayaran hanya dengan memposting campaign dari sebuah brand owner.</div>
             </div>
         </div>
 
         <div className="flex flex-col mx-40 my-40">
-            <div className="flex justify-center text-3xl font-medium pl-8 text-purple-700">HOW IT WORKS</div>
+            <div className="flex justify-center text-3xl font-medium pl-8 text-purple-700">Untuk Siapa Saja?</div>
             <div className="flex flex-row mt-8">
-                <div className="order-1 flex flex-col">
+                <div className="order-1 flex flex-col pr-16">
                     <img className='img' src="Rectangle 223.png" width="400" height="65"></img>
-                    <div className="text-2xl font-light text-left ml-8">Untuk Pemilik Brand</div>
-                    <div className="font-light text-left text-gray-400 ml-8">Platform ENDOZZER membantu small business dalam menemukan influencer yang tepat untuk mempromosikan produknya.</div>
+                    <div className="text-2xl font-light text-left">Untuk Brand Owner</div>
+                    <div className="font-light text-left text-gray-400 pr-16">Platform Endozzer membantu small business dalam menemukan influencer yang tepat untuk mempromosikan produknya.</div>
                 </div>
 
                 <div className="order-2 flex flex-col">
                     <img className='img' src="Rectangle 225.png" width="400" height="65"></img>
-                    <div className="text-2xl font-light text-left ml-8">Untuk Influencer</div>
-                    <div className="font-light text-left text-gray-400 ml-8">Jadikan Media Sosial kamu tempat untukmu berkreasi dan menghasilkan pendapatan.</div>
+                    <div className="text-2xl font-light text-left">Untuk Influencer</div>
+                    <div className="font-light text-left text-gray-400">Jadikan Media Sosial kamu tempat untukmu berkreasi dan menghasilkan pendapatan.</div>
                 </div>
             </div>
         </div>
 
-        <div className="flex flex-col justify-center bg-purple-600 bg-origin-border bg-contain">
-            <div className="flex flex-row justify-center">
-                <div className="order-1 text-2xl font-light text-left ml-8">Siapkah kamu menjadikan Media Sosial sebagai pijakan karirmu?</div>
+        <div className="flex flex-col justify-center rounded-3xl bg-purple-600 p-16 m-16">
+            <div className="flex flex-row justify-center space-x-10">
+                <div className="order-1 text-2xl font-light text-left ml-8">Siapkah kamu menjadikan media sosial sebagai pijakan karirmu?</div>
                 <Button onClick={() => handleButtonClick("/login")} 
-                        className="order-2 text-2xl font-light text-left ml-8 bg-purple-600" 
-                        variant="outlined">Jadi influencer</Button>
+                        className="order-2 text-2xl font-light bg-purple-600" 
+                        variant="outlined">MASUK SEBAGAI INFLUENCER</Button>
                 <Button onClick={() => handleButtonClick("/login_brand")} 
-                        className="order-3 text-2xl font-light text-left ml-8 bg-purple-600" 
-                        variant="outlined">masuk sebagai brand owner</Button>
-            </div>
-        </div>
-
-        <div className="flex flex-col justify-center mx-40 my-40">
-            <div className="flex flex-row justify-center space-x-10 mt-8">
-                <div className="order-1 flex flex-col space-y-2">
-                    <img className='img' src="Group 28.png" width="200" height="200"></img>
-                    <div className="text-2xl font-medium text-left">@Zoesennett</div>
-                    <div className="font-light text-left text-gray-400">Skin And beauty care</div>
-                    <div className="text-base font-medium text-left text-purple-700">100K Followers</div>
-                </div>
-
-                <div className="order-2 flex flex-col space-y-2">
-                    <img className='img' src="Group 29.png" width="200" height="200"></img>
-                    <div className="text-2xl font-medium text-left">@AllisonCamile</div>
-                    <div className="font-light text-left text-gray-400">Food and Beverage</div>
-                    <div className="text-base font-medium text-left text-purple-700">50000 Followers</div>
-                </div>
-
-                <div className="order-3 flex flex-col space-y-2">
-                    <img className='img' src="Group 30.png" width="200" height="200"></img>
-                    <div className="text-2xl font-medium text-left">@makaylaj2019</div>
-                    <div className="font-light text-left text-gray-400">Health and Lifestyle</div>
-                    <div className="text-base font-medium text-left text-purple-700">2000 Followers</div>
-                </div>
+                        className="order-3 text-2xl font-light bg-purple-600" 
+                        variant="outlined">MASUK SEBAGAI BRAND OWNER</Button>
             </div>
         </div>
 
