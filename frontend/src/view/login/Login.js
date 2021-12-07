@@ -41,31 +41,33 @@ export default function Login(){
     const [error, setError] = useState(null);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    
 
-    //const { isAuthenticated, loginSuccess, loginFailed } = useContext(AuthContext);
+    const { isAuthenticated, loginSuccess, loginFailed } = useContext(AuthContext)
     
     const history = useHistory();
 
-    async function handleButtonSubmit(event) {
+    function handleButtonSubmit(event) {
         event.preventDefault();
-        console.warn(username, password);
-        var data = {username,password};
+        history.push('/dashboard')
+        loginSuccess();
+        console.log("State: ", isAuthenticated)
+        // console.warn(username, password);
+        // var data = {username,password};
 
-        var hasil = await fetch("/api/auth/token/",{
-            //credentials:'include',
-            method:'POST',
-            headers:{
-                'Content-Type': "application/json",
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify(data)
-        });
+        // var hasil = await fetch("/api/auth/token/",{
+        //     //credentials:'include',
+        //     method:'POST',
+        //     headers:{
+        //         'Content-Type': "application/json",
+        //         'Accept': 'application/json',
+        //     },
+        //     body: JSON.stringify(data)
+        // });
 
-        hasil = await hasil.json();
-        console.log(hasil)
-        localStorage.setItem("user-info", JSON.stringify(hasil));
-        history.push('/about')
+        // hasil = await hasil.json();
+        // console.log(hasil)
+        // localStorage.setItem("user-info", JSON.stringify(hasil));
+        
         // axios(hasil)
         // .then(function (response){
         //     console.log(response.hasil);

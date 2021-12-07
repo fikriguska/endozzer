@@ -1,11 +1,13 @@
 // Dashboard
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import { Grid, Card, CardMedia, Typography, makeStyles, Button } from '@material-ui/core'
 import Divider from '@mui/material/Divider';
 import { Stack } from '@mui/material';
 import {ReactComponent as LogoIG} from '../Asset/Vector.svg'
-import {ReactComponent as LogoCampaign} from '../Asset/Vector-1.svg'
+import InstagramIcon from '@material-ui/icons/Instagram';
+import { useHistory } from 'react-router';
 import { Box, style } from '@mui/system';
+import { AuthContext } from '../auth';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +45,16 @@ const useStyles = makeStyles((theme) => ({
 
 const CardView = props =>{
   const styles = useStyles();
+
+  const {isAuthenticated} = useContext(AuthContext)
+
+  const history = useHistory();
+
+  function handleButtonDetil(event) {
+    event.preventDefault();
+    history.push('/detilcampaign');
+}
+  console.log('ajdhfja:', isAuthenticated)
   return(
     <div>
       <Card className={styles.root}>
@@ -50,14 +62,10 @@ const CardView = props =>{
         <Divider/>
         <Stack direction='row' spacing={5} justifyContent='center' alignItems='center' marginTop={3}>
           {/* Button di atas */}
+          
           <Button className={styles.buttonAtas} 
             variant='contained' 
-            startIcon={<LogoIG/>}
-            style={{backgroundColor: '#2196F3',
-                    color: '#ffffff'}} >campaign baru</Button>
-          <Button className={styles.buttonAtas} 
-            variant='contained' 
-            startIcon={<LogoCampaign/>} 
+            startIcon={<InstagramIcon/>} 
             style={{backgroundColor: '#7121F3',
                     color: '#ffffff'}}>Instagram foto</Button>
         </Stack> 
@@ -75,7 +83,9 @@ const CardView = props =>{
           </Grid>
         </Box>
         <Stack direction="column" spacing={2} justifyContent='center' alignItems='center'>
-          <Button className={styles.buttonSubmit}>Open Submision</Button> 
+          <Button className={styles.buttonSubmit}
+          onClick={handleButtonDetil}
+          >Open Submision</Button> 
         </Stack>
         
       </Card>

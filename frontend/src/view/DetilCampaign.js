@@ -6,6 +6,7 @@ import { Box, style } from '@mui/system';
 import { ReactComponent as LogoBack} from '../Asset/LogoBack.svg'
 //import {ReactComponent as LogoIG} from '../Asset/Vector-1.svg'
 import InstagramIcon from '@material-ui/icons/Instagram';
+import { useHistory } from 'react-router';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -60,13 +61,26 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DetilCampaign(){
     const styles = useStyles();
+
+    const history = useHistory();
+
+    function handleButtonDaftar(event){
+        event.preventDefault();
+    }
+
+    function handleButtonKembali(event){
+        event.preventDefault();
+        history.goBack();
+    }
+
     return(
         <div>
             <Button className={styles.buttonBack}
                 variant='contained'
+                onClick={handleButtonKembali}
                 startIcon={<LogoBack
                     style={{ height: 53, width: 36 }} />}
-                >Detail Campaign
+                >Kembali
             </Button>
             <Paper className={styles.root}>
                 <Stack direction='column' spacing={2} textAlign='center' justifyContent='center' alignItems='center'>
@@ -171,7 +185,8 @@ export default function DetilCampaign(){
             </Paper>
             <Button className={styles.buttonSubmit}
                 variant='contained'
-                >Detail Campaign
+                onClick={handleButtonDaftar}
+                >Daftar
             </Button>
         </div>
     )

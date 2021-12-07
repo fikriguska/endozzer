@@ -13,6 +13,7 @@ import { Button,
     Icon} from "@material-ui/core";
 import { Stack } from "@mui/material";
 import React from "react";
+import { useHistory } from "react-router";
 import { ReactComponent as LogoBack} from '../Asset/LogoBack.svg'
 //import {ReactComponent as LogoIg} from '../Asset/IGUngu.svg'
 //import tiktok from '../Asset/TiktokUngu.svg'
@@ -58,10 +59,23 @@ textField:{
 export default function LengkapiDataNext(){
 const style = useStyles();
 
+const history = useHistory();
+
+function handleButtonSelesai(event) {
+    event.preventDefault();
+    history.push('/login');
+}
+
+function handleButtonKembali(event){
+    event.preventDefault();
+    history.goBack();
+}
+
 return(
     // <Button> buat tombol diatas paper
     <><Button className={style.buttonBack}
         variant='contained'
+        onClick={handleButtonKembali}
         startIcon={<LogoBack
             style={{ height: 53, width: 36 }} />}
     >Akun Media Sosial
@@ -94,6 +108,7 @@ return(
                 <Button className={style.buttonNext}
                     type='submit'
                     variant='contained'
+                    onClick={handleButtonSelesai}
                     style={{backgroundColor: '#21B709',
                     color: '#ffffff', borderRadius: 8, height: 40, width: 200}}
                     >

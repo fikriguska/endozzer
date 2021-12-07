@@ -17,7 +17,7 @@ export default function Status() {
     return(
         <div className={makeStyles.tampilan}>
             <Router>
-            <ToggleStatus />
+        <ToggleStatus />
         <Switch>
           <Route exact from="/pendaftaran" render={props => <CardStatus {...props} />} />
           <Route exact from="/draf" render={props => <CardStatus {...props} />} />

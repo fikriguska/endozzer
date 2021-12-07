@@ -14,6 +14,7 @@ import { Button,
         FormGroup } from "@material-ui/core";
 import { Stack } from "@mui/material";
 import React from "react";
+import { useHistory } from "react-router";
 import { ReactComponent as LogoBack} from '../Asset/LogoBack.svg'
 
 const useStyles = makeStyles((theme) => ({
@@ -51,11 +52,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LengkapiData(){
     const style = useStyles();
+
+    const history = useHistory();
+
+    function handleButtonNext(event) {
+        event.preventDefault();
+        history.push('/lengkapidata2');
+    }
+
+    function handleButtonKembali(event){
+        event.preventDefault();
+        history.goBack();
+    }
     
     return(
         // <Button> buat tombol diatas paper
         <><Button className={style.buttonBack}
             variant='contained'
+            onClick={handleButtonKembali}
             startIcon={<LogoBack
                 style={{ height: 53, width: 36 }} />}
         >Data profil
@@ -152,6 +166,7 @@ export default function LengkapiData(){
                         <Button className={style.buttonNext}
                                 type='submit'
                                 variant='contained'
+                                onClick={handleButtonNext}
                                 style={{backgroundColor: '#8122B3',
                                     color: '#ffffff', borderRadius: 8, height: 40, width: 200}}
                                 >

@@ -44,12 +44,15 @@ export default function Signup(){
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
+    const history = useHistory();
+
     //const { isAuthenticated, loginSuccess, loginFailed } = useContext(AuthContext);
     
     //const history = useHistory();
 
      function handleButtonSubmit(event) {
         event.preventDefault();
+        history.push('/lengkapidata1');
     }
    
     return(
@@ -104,7 +107,7 @@ export default function Signup(){
                             style={{backgroundColor: '#8122B3',
                                 color: '#ffffff'}}
                             onClick={handleButtonSubmit}>
-                                Login
+                                Sign up
                         </Button>
                    
                    </Stack> 
