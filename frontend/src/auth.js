@@ -19,8 +19,7 @@ export const AuthProvider = (props) => {
     const logout = () => {
         setAuth(false)    
         localStorage.clear()
-        history.push("/")
-        window.location.reload();
+        
     }
 
     return(
